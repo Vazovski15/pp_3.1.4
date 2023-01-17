@@ -7,33 +7,32 @@ import javax.persistence.*;
 import java.util.Collection;
 
 @Entity
-@Table(name = "user")
 public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+
     private int id;
 
-    @Column(name = "firstname")
+
     private String firstname;
 
-    @Column(name = "lastname")
+
     private String lastname;
 
-    @Column(name = "age")
+
     private int age;
 
-    @Column(name = "email")
+
     private String email;
 
-    @Column(name = "password")
+
     private String password;
 
-    @Column(name = "username")
+
     private String username;
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -100,6 +99,10 @@ public class User implements UserDetails {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public void addRole(Role role) {
+        this.roles.add(role);
     }
 
     @Override

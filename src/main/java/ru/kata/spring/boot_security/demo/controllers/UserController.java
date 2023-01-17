@@ -16,12 +16,12 @@ public class UserController {
 
     private final UserService userService;
 
-    private final RoleRepository roleRepository;
+
 
     @Autowired
-    public UserController(UserService userService, RoleRepository roleRepository) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.roleRepository = roleRepository;
+
     }
 
     @GetMapping()
