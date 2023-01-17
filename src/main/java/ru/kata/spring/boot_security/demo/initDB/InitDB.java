@@ -40,6 +40,13 @@ public class InitDB {
     }*/
     @PostConstruct
     public void initDBInit() {
+        User user=new User("Kris", "Sidorova", 30, "kris@gmail.com",
+                "$2y$10$T2xl2aqRUT2ksgpoX8YPpOGOD28v9u/flBABPTw6NRirVxnePxrYK", "ks");
+        Role role2=new Role("ROLE_USER");
+        Set<Role>roleUser=new HashSet<>(Set.of(role2));
+        user.setRoles(roleUser);
+        userRepository.save(user);
+
         User admin = new User("Ivan", "Ivanov", 25, "ivanov@gmail.com",
                 "$2y$10$T2xl2aqRUT2ksgpoX8YPpOGOD28v9u/flBABPTw6NRirVxnePxrYK", "vano");
         Role role1=new Role("ROLE_ADMIN");
@@ -47,12 +54,7 @@ public class InitDB {
         admin.setRoles(roleAdmin);
         userRepository.save(admin);
 
-        User user=new User("Kris", "Sidorova", 30, "kris@gmail.com",
-                "$2y$10$T2xl2aqRUT2ksgpoX8YPpOGOD28v9u/flBABPTw6NRirVxnePxrYK", "ks");
-        Role role2=new Role("ROLE_USER");
-        Set<Role>roleUser=new HashSet<>(Set.of(role2));
-        user.setRoles(roleUser);
-        userRepository.save(user);
+
 
 
 
